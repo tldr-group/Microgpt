@@ -158,3 +158,17 @@ cython_debug/
 #  and can be added to the global gitignore or merged into this file.  For a more nuclear
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
+
+# Custom rules
+assistant_id_microgpt.txt
+assistant_id_datagpt.txt
+assistant_id_filtergpt.txt
+assistant_id_toolgpt.txt
+
+created_script.py
+
+credentials.json
+
+run_steps.json
+messages.json
+required_actions.json
