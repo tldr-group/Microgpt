@@ -333,8 +333,28 @@ assistant = create_assistant(assistant_name_microgpt, model_name_microgpt, tools
 # Create a thread
 thread = create_thread()
 
-print('Welcome to Micro GPT! You can upload the relative path of 3D microstructure images for analysis. Type "quit" to exit. Type "ANALYSIS" to start the analysis of images in data folder.')
-print('Here are some example prompts:\n - Tell me about the img\'s tortuosity,the path is ./data/microstructure066.tif, microstructure360.tif, microstructure365.tif, microstructure368.tif, microstructure376.tif\n')
+delimiter = "####"
+print("\n=========================Welcome to MicroGPT!===========================\n")
+print('I am a specialized chatbot tailored for micro-material analysis. I can help you with the following tasks:\n - data collection, filtering, simulation, analysis, visualization, and tool development\n Input quit for ending the conversation\n')
+print(f"""Here are some example prompts:\n 
+{delimiter} Data Collection
+Can you search for the Microlib online, which is a dataset of 3D microstructures?\n
+
+{delimiter} Custom Tool Creation and Reuse
+Please write and execute a script to unzip the file \'./microlibDataset.zip\n
+
+{delimiter} Data Filter
+In the \'microlibDataset.zip\' file, can you find all the 3D images related to cast iron?\n
+
+{delimiter} Data Simulation
+Could you analyze the 3D images in the \'./data\' folder to determine their tortuosity, diffusion, factor, volume fraction, and surface area?\n
+
+{delimiter} Data Analysis
+Read the data in ./data_0.csv, compare microstructure 393, 368, and 365
+Which microstructure is more suitable to be used as a filter and catalyst carrier?\n
+
+{delimiter} Data Visulization
+Can you generate some figures to create visualizations for the data?  Histograms for each numerical column to understand the distribution of values.  Scatter plots to explore relationships between pairs of numerical variables (e.g., Effective Diffusivity vs.  Tortuosity)\n""")
 
 while True:
     # Get user input

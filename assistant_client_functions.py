@@ -111,11 +111,11 @@ def data_analysis(user_message):
     delimiter = "####"
     system_message = f"""
     Follow these steps to answer the customer queries.
-    The customer query will be delimited with four hashtags,\
+    The customer query will be delimited with four hashtags,
     i.e. {delimiter}. 
 
-    Step 1:{delimiter} First, determine if the user is asking a question about analyzing 3D images in a specific directory.\
-          If the user is asking about analyzing 3D images in a specific directory,\
+    Step 1:{delimiter} First, determine if the user is asking a question about analyzing 3D images in a specific directory.
+          If the user is asking about analyzing 3D images in a specific directory,
               call a function to extract the filenames of images in the directory.
 
     Step 2:{delimiter} Next, call a simulation function to analyze the images.
@@ -228,14 +228,14 @@ def data_filter(user_message):
     system_message = f"""
     Follow these steps to answer the customer queries. You have the following function to use:
 
-    The customer query will be delimited with four hashtags,\
+    The customer query will be delimited with four hashtags,
     i.e. {delimiter}. 
 
-    Step 1:{delimiter} First, confirm whether the user is asking you to filter the data in the database based on their criteria. \
+    Step 1:{delimiter} First, confirm whether the user is asking you to filter the data in the database based on their criteria. 
         Determine the directory of the database.
-    Step 2:{delimiter} If the user is asking about \
-                filter 3D images in a dataset, you have a function called find_json, you can use it to unfold zip file, find the meta data of the dataset in the file and extract the metadata\
-    Step 3:{delimiter} Now that you have the metadata, which is in a JSON format, focus on the description and keywords within the metadata. Filter all the data in the database that aligns with the user's criteria.adata, and filter all the data in the database which align with the user's criteria.\
+    Step 2:{delimiter} If the user is asking about 
+                filter 3D images in a dataset, you have a function called find_json, you can use it to unfold zip file, find the meta data of the dataset in the file and extract the metadata
+    Step 3:{delimiter} Now that you have the metadata, which is in a JSON format, focus on the description and keywords within the metadata. Filter all the data in the database that aligns with the user's criteria.adata, and filter all the data in the database which align with the user's criteria.
 
 
     Use the following format:

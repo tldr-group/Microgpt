@@ -2,32 +2,20 @@
 
 ## Overview
 
-Microgpt is designed to streamline the process of micro-material analysis through a suite of specialized functionalities. These include data acquisition, filtering, simulation, analysis, visualization, and tool development.
+Microgpt is a specialized chatbot tailored for micro-material analysis. It is designed to perform a variety of functions:
 
-## Features
+•	Data Acquisition: Conduct searches for open-source datasets like Microlib (https://microlib.io/) on Zenodo (https://zenodo.org/), an interdisciplinary open-access repository, and employ toolkit functions to download these datasets using the links available on the respective web pages.
 
-### Data Acquisition
-- **Zenodo Dataset Integration:** Automates retrieval of micro-material datasets from Zenodo's open-access repository.
-- **Efficient Downloading:** Utilizes toolkit functionalities for streamlined dataset downloading.
+•	Data Filtering: Engage in the retrieval of dataset metadata. Read the metadata to refine the data in accordance with user specifications. Subsequently, organize the filtered data into a newly created file directory.
 
-### Data Filtering
-- **Metadata Processing:** Employs algorithms for precise metadata extraction and data filtration.
-- **Data Organization:** Categorizes and stores processed data methodically.
+•	Data Simulation: Invoke simulation tools for 3D microstructure like Taufactor 2 (https://github.com/openjournals/joss-reviews/issues/5358). Document the simulation outcomes in formats such as CSV. Utilize toolkit functions to facilitate the uploading of findings to cloud-based storage, thereby ensuring ease of access and interaction.
 
-### Data Simulation
-- **3D Microstructure Modeling:** Uses advanced tools for accurate 3D microstructure simulations.
-- **Documentation and Cloud Storage:** Ensures detailed recording and cloud uploading of simulation outputs.
+•	Data Analysis: Assess the validity of data, compare various datasets, and based on user requirements, formulate hypotheses and provide recommendations. 
 
-### Data Analysis
-- **Data Validation:** Implements rigorous methods for ensuring data accuracy.
-- **Comparative Analysis and Hypothesis Generation:** Drives analysis and hypothesis development based on user needs.
+•	Data Visualization: Generate relevant images based on user requirements and data outcomes, assisting users in better understanding the content and distribution of the data.
 
-### Data Visualization
-- **Dynamic Image Rendering:** Generates images to elucidate data characteristics.
+•	Tool Development and Reutilization: Develop custom tools through programming, specifically designed to cater to the unique needs of users.  As user requirements evolve, continuously adapt and enhance these tools, ensuring their applicability and effectiveness in future applications.
 
-### Tool Development and Reutilization
-- **Custom Tool Creation:** Develops tools tailored to unique analytical requirements.
-- **Continuous Tool Enhancement:** Adapts and refines tools for evolving user needs.
 
 ## Quick Start Guide
 
@@ -63,7 +51,7 @@ python run_assistant.py
 ```
 
 
-## Microgpt Prompt Examples:
+## Microgpt Example Prompts:
 ### Data Collection
 "Can you search for the Microlib online, which is a dataset of 3D microstructures?"
 
