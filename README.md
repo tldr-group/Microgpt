@@ -37,7 +37,7 @@ Set up API keys for OpenAI and Zenodo. Create a .env file in the root directory 
 export OPENAI_API_KEY=<your-openai-api-key>
 export ZENODO_API_KEY=<your-zenodo-api-key>
 ```
-Replace <your-openai-api-key> and <your-zenodo-api-key> with your actual API keys.
+Replace &lt;your-openai-api-key&gt; and &lt;your-zenodo-api-key&gt; with your actual API keys
 
 ### 3. Optional: Google Cloud Setup
 Obtain credentials.json for cloud uploads (optional).
