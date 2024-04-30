@@ -157,8 +157,7 @@ def data_analysis(user_message):
     assistant_name_datagpt = "Data gpt"
     model_name_datagpt = 'gpt-4-1106-preview'
     instructions_datagpt = "This assistant will help you to analyse 3D images in a specific directory."
-    tools_datagpt = [{"tpye":"code_interpreter"},
-                        {"type": "retrieval"},
+    tools_datagpt = [
         
         {
                 "type": "function",
@@ -193,20 +192,6 @@ def data_analysis(user_message):
                         }
                     },
                     "required": ["directory"]
-                    },
-                    "return": {
-                    "type": "object",
-                    "description": "A tuple containing the path to the output text file with image paths and a sentence listing these paths.",
-                    "properties": {
-                        "output_file_path": {
-                        "type": "string",
-                        "description": "The path to the output text file containing the list of image paths."
-                        },
-                        "prompt": {
-                        "type": "string",
-                        "description": "A sentence that lists all the extracted image paths."
-                        }
-                    }
                     }
                 }
             }
@@ -232,9 +217,9 @@ def data_filter(user_message):
     i.e. {delimiter}. 
 
     Step 1:{delimiter} First, confirm whether the user is asking you to filter the data in the database based on their criteria. 
-        Determine the directory of the database.
+        Determine the directory of the database directly from users' input.
     Step 2:{delimiter} If the user is asking about 
-                filter 3D images in a dataset, you have a function called find_json, you can use it to unfold zip file, find the meta data of the dataset in the file and extract the metadata
+                filter 3D images in a dataset, you have a function called find_json, you can use it to unfold zip file, find the meta data of the dataset in the file and extract the metadata. Don't use other functions to extract the metadata.
     Step 3:{delimiter} Now that you have the metadata, which is in a JSON format, focus on the description and keywords within the metadata. Filter all the data in the database that aligns with the user's criteria.adata, and filter all the data in the database which align with the user's criteria.
 
 
@@ -260,8 +245,7 @@ def data_filter(user_message):
     instructions_filtergpt = "This assistant will help you to filter data based on specific criterial in a dataset. You don't need user to upload the dataset file to this platform\
         you can use the given function directly with the dataset file directory.\
             IMPORTANT: the directory always looks like './+filename.zip',  without ./mnt/data"
-    tools_datagpt = [{"tpye":"code_interpreter"},
-                        {"type": "retrieval"},
+    tools_datagpt = [
         
                 {
                     "type": "function",
@@ -277,21 +261,6 @@ def data_filter(user_message):
                                 }
                             },
                             "required": ["file_or_dir_path"]
-                        },
-                        "sub_functions": {
-                            "is_non_empty_file": {
-                                "description": "Checks if a given file path points to a non-empty file."
-                            },
-                            "search_metadata": {
-                                "description": "Searches the given directory for metadata files ending in '.json' or '.xml', asking the user for confirmation before extracting."
-                            }
-                        },
-                        "error_handling": {
-                            "description": "Handles JSON decoding errors when reading and parsing JSON files."
-                        },
-                        "final_output": {
-                            "type": "string",
-                            "description": "Returns the contents of the extracted metadata file if found and confirmed, or a message indicating no metadata found."
                         }
                     }
                 },
@@ -375,8 +344,7 @@ def tool_reuse(user_message):
     model_name_toolgpt = 'gpt-4-1106-preview'
     instructions_toolgpt = "This is an assistant to reuse the tools. It can modify the code of a file according to user's needs and then run it\
             IMPORTANT: the directory always looks like './+filename.zip',  without ./mnt/data"
-    tools_toolgpt = [{"tpye":"code_interpreter"},
-                        {"type": "retrieval"},
+    tools_toolgpt = [
         
                 {
                 "type": "function",

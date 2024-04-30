@@ -15,13 +15,13 @@ instructions_microgpt = """You are an assistant to analyze microstructure. Remem
     2. After writing the code, always use a function, create_and_execute_python_file, to upload and execute it.
     3. If the user ask for anlysis the all images in a specific folder, please use data_analysis function. If use ask for analysis an image, please use other function.
     4. If the user ask to filter data in a dataset, eg. try to find iron related 3D images in a specific directory, please use data_filter function.
-    5. If the user requests to reuse a tool that is included in a Python file, please employ the 'tool_reuse' function"""
+    5. If the user requests to reuse a tool that is included in a Python file, please employ the 'tool_reuse' function
+    6. Don't use extract_and_organize_files function when user ask for data filter in a zip folder!!!"""
 
 assistant_name_microgpt = "Micro gpt"
 model_name_microgpt = 'gpt-4-1106-preview'
 
-tools_microgpt = [{"tpye":"code_interpreter"},
-                        {"type": "retrieval"},
+tools_microgpt = [
              {
                 "type": "function",
                 "function": {
@@ -119,7 +119,7 @@ tools_microgpt = [{"tpye":"code_interpreter"},
                 "type": "function",
                 "function": {
                     "name": "extract_and_organize_files",
-                    "description": "Extracts files from a specified ZIP archive and organizes files with a certain extension into a designated output folder.",
+                    "description": "Extracts files from a specified ZIP archive and organizes files with a certain extension into a designated output folder. IMPORTNANT: Don't use the function when user ask for data filter!!!",
                     "parameters": {
                         "type": "object",
                         "properties": {
@@ -201,21 +201,8 @@ tools_microgpt = [{"tpye":"code_interpreter"},
                         }
                     },
                     "required": ["directory"]
-                    },
-                    "return": {
-                    "type": "object",
-                    "description": "A tuple containing the path to the output text file with image paths and a sentence listing these paths.",
-                    "properties": {
-                        "output_file_path": {
-                        "type": "string",
-                        "description": "The path to the output text file containing the list of image paths."
-                        },
-                        "prompt": {
-                        "type": "string",
-                        "description": "A sentence that lists all the extracted image paths."
-                        }
                     }
-                    }
+                    
                 }
             },
             {
@@ -232,40 +219,15 @@ tools_microgpt = [{"tpye":"code_interpreter"},
                         }
                     },
                     "required": ["user_message"]
-                    },
-                    "sub_functions": {
-                    "get_completion": {
-                        "description": "Generates a response from the GPT-4 model based on the system's instructions and the user's query."
-                    },
-                    "execute_step": {
-                        "description": "Executes individual analysis steps as directed by the GPT-4 model's response."
                     }
-                    },
-                    "internal_process": {
-                    "message_preparation": {
-                        "description": "Prepares the system and user messages for input to the GPT-4 model."
-                    },
-                    "step_extraction": {
-                        "description": "Extracts specific steps from the GPT-4 model's response for execution."
-                    },
-                    "final_execution": {
-                        "description": "Executes the final step and compiles a concluding response."
-                    }
-                    },
-                    "error_handling": {
-                    "description": "Manages any errors or exceptions that occur during the process."
-                    },
-                    "final_output": {
-                    "type": "string",
-                    "description": "The final response provided after completing the analysis of the user's query."
-                    }
+
                 }
                 },
                 {
                     "type": "function",
                     "function": {
                         "name": "data_filter",
-                        "description": "This function guides the user through a process to filter data from a dataset based on specific criteria. It outlines steps for confirming the user's request to filter data, using a function to extract metadata from a dataset, and then filtering the data according to the user's criteria. The function utilizes a systematic approach involving user and system messages, and leverages other functions like 'find_json' and 'extract_files_from_folder_or_zip' for data handling.",
+                        "description": "This function guides the user through a process to filter data (apply certain criteria to find all pieces of data based on specific conditions or attributes) from a dataset based on specific criteria. It outlines steps for confirming the user's request to filter data, using a function to extract metadata from a dataset, and then filtering the data according to the user's criteria. The function utilizes a systematic approach involving user and system messages, and leverages other functions like 'find_json' and 'extract_files_from_folder_or_zip' for data handling.",
                         "parameters": {
                             "type": "object",
                             "properties": {
@@ -275,30 +237,6 @@ tools_microgpt = [{"tpye":"code_interpreter"},
                                 }
                             },
                             "required": ["user_message"]
-                        },
-                        "return": {
-                            "type": "object",
-                            "description": "The function returns the final response after executing the data filtering steps, which includes filtered data names and corresponding download links based on the user's criteria.",
-                            "properties": {
-                                "response": {
-                                    "type": "string",
-                                    "description": "The final output of the function, containing the filtered data information as per the user's request."
-                                }
-                            }
-                        },
-                        "sub_functions": {
-                            "get_completion": {
-                                "description": "Processes a sequence of messages and returns a completion response."
-                            },
-                            "create_assistant": {
-                                "description": "Creates a new assistant instance for data filtering tasks."
-                            },
-                            "create_thread": {
-                                "description": "Initiates a new thread for processing the data filtering steps."
-                            },
-                            "execute_step": {
-                                "description": "Executes a specific step in the data filtering process and returns the response."
-                            }
                         }
                     }
                 },
@@ -316,10 +254,6 @@ tools_microgpt = [{"tpye":"code_interpreter"},
                                 }
                             },
                             "required": ["user_message"]
-                        },
-                        "returns": {
-                            "type": "string",
-                            "description": "Returns the response after processing the user message and executing the necessary steps, which includes reading, modifying, and executing the code as per user's requirements."
                         }
                     }
                 }
@@ -344,7 +278,7 @@ Can you search for the Microlib online, which is a dataset of 3D microstructures
 Please write and execute a script to unzip the file \'./microlibDataset.zip\n
 
 {delimiter} Data Filter
-In the \'microlibDataset.zip\' file, can you find all the 3D images related to cast iron?\n
+In the \'microlibDataset.zip\' file, can you filter all the 3D images related to cast iron?\n
 
 {delimiter} Data Simulation
 Could you analyze the 3D images in the \'./data\' folder to determine their tortuosity, diffusion, factor, volume fraction, and surface area?\n

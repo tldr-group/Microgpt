@@ -59,7 +59,7 @@ python run_assistant.py
 "Please write and execute a script to unzip the file ’./microlibDataset.zip"
 
 ### Data Filter
-"In the ’microlibDataset.zip’ file, can you find all the 3D images related to cast iron?"
+"In the ’microlibDataset.zip’ file, can you filter the 3D images related to cast iron?"
 
 ### Data Simulation
 "Could you analyze the 3D images in the ’./data’ folder to determine their tortuosity, diffusion
