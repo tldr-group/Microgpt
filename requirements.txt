@@ -45,3 +45,4 @@ urllib3
 taufactor==1.1.0
 bs4==0.0.2
 nbformat==5.10.4
+python-dotenv==1.0.1

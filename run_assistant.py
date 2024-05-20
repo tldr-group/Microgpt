@@ -2,7 +2,9 @@ import openai
 import os
 from utils import *
 from assistant_client_functions import *
+from dotenv import load_dotenv
 
+load_dotenv()
 openai.api_key = os.getenv("OPENAI_API_KEY")
 client = openai.OpenAI(api_key=openai.api_key)
 

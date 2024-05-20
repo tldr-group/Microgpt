@@ -25,31 +25,20 @@ Create and activate the Microgpt environment using the following commands in you
 ```
 conda create --name microgpt python=3.11
 conda activate microgpt
+pip install -r requirements.txt
 ```
 
-Create a environment.yml file in the root directory and add:
-```plaintext
-name: microgpt
-channels:
-  - defaults
-dependencies:
-  - python=3.11
-  - pip
-  - pip:
-      - -r requirements.txt
-variables:
-  OPENAI_API_KEY: <your-openai-api-key>
-  ZENODO_API_KEY: <your-zenodo-api-key>
-```
 
 ### 2. API Configuration for OpenAI and Zenodo
 
-Replace &lt;your-openai-api-key&gt; and &lt;your-zenodo-api-key&gt; with your actual API keys in environment.yml file.
+Set up API keys for OpenAI and Zenodo. Create a .env file in the root directory and add your API keys:
 
-Update the conda environment using the following commands in your terminal:
+```plaintext
+export OPENAI_API_KEY=<your-openai-api-key>
+export ZENODO_API_KEY=<your-zenodo-api-key>
 ```
-conda env update -f environment.yml --prune
-```
+Replace &lt;your-openai-api-key&gt; and &lt;your-zenodo-api-key&gt; with your actual API keys
+
 
 ### 3. Optional: Google Cloud Setup
 Obtain credentials.json for cloud uploads (optional).
