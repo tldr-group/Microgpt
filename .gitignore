@@ -176,6 +176,8 @@ required_actions.json
 microlibDataset.zip
 test.py
 
+environment.yml
+
 /data/
 /microlibDataset/
 /cast_iron_images/

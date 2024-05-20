@@ -25,19 +25,31 @@ Create and activate the Microgpt environment using the following commands in you
 ```
 conda create --name microgpt python=3.11
 conda activate microgpt
-conda install pytorch torchvision torchaudio pytorch-cuda=11.8 -c pytorch -c nvidia
-pip install -r requirements.txt
+```
+
+Create a environment.yml file in the root directory and add:
+```plaintext
+name: microgpt
+channels:
+  - defaults
+dependencies:
+  - python=3.11
+  - pip
+  - pip:
+      - -r requirements.txt
+variables:
+  OPENAI_API_KEY: <your-openai-api-key>
+  ZENODO_API_KEY: <your-zenodo-api-key>
 ```
 
 ### 2. API Configuration for OpenAI and Zenodo
 
-Set up API keys for OpenAI and Zenodo. Create a .env file in the root directory and add your API keys:
+Replace &lt;your-openai-api-key&gt; and &lt;your-zenodo-api-key&gt; with your actual API keys in environment.yml file.
 
-```plaintext
-export OPENAI_API_KEY=<your-openai-api-key>
-export ZENODO_API_KEY=<your-zenodo-api-key>
+Update the conda environment using the following commands in your terminal:
 ```
-Replace &lt;your-openai-api-key&gt; and &lt;your-zenodo-api-key&gt; with your actual API keys
+conda env update -f environment.yml --prune
+```
 
 ### 3. Optional: Google Cloud Setup
 Obtain credentials.json for cloud uploads (optional).
@@ -46,7 +58,6 @@ Obtain credentials.json for cloud uploads (optional).
 Run Microgpt by sourcing the environment variables from .env and executing the main script:
 
 ```
-source .env
 python run_assistant.py
 ```
 
